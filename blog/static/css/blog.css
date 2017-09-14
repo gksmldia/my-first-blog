@@ -3,7 +3,7 @@ h1 a {
   font-family: 'Nanum Gothic', serif;
 }
 
-body {
+body > content {
     padding-left: 15px;
 }
 
