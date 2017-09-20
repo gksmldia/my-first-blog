@@ -1,0 +1,33 @@
+{% extends "blog/base.html" %}
+
+{% block content %}
+  <h1>Login</h1>
+  <form class="form-horizontal" method="post" action="{% url 'login' %}">
+  {% csrf_token %}
+    <div class="form-group">
+      <div class="col-md-3 col-md-offset-1 col-sm-2 col-xs-3 text-right">
+        <label class="control-label">{{ form.username.label_tag }}</label>
+      </div>
+      <div class="col-md-8 col-sm-8 col-xs-8">
+        <input name="{{ form.username.html_name}}" type="text" class="form-control" />
+      </div>
+    </div>
+    <div class="form-group">
+      <div class="col-md-3 col-md-offset-1 col-sm-2 col-xs-3 text-right">
+        <label class="control-label">{{ form.password.label_tag }}</label>
+      </div>
+      <div class="col-md-8 col-sm-8 col-xs-8">
+        <input name="{{ form.password.html_name}}" type="password" class="form-control" />
+      </div>
+    </div>
+    <div class="form-group">
+      <div class="col-md-offset-4 col-md-3 col-sm-offset-2 col-sm-3 col-xs-offset-3 col-xs-3">
+        <input type="submit" value="login" class="btn btn-primary"/>
+      </div>
+      <input type="hidden" name="next" value="{{ next }}" />
+    </div>
+  </form>
+  {% if form.errors %}
+  <p>Your username and password didn't match. Please try again.</p>
+  {% endif %}
+{% endblock %}
