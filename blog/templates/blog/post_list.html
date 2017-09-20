@@ -1,13 +1,24 @@
 {% extends 'blog/base.html' %}
 
 {% block content %}
+  <div>
+    <h2>Post List</h2>
   {% for post in posts %}
-    <div class="post">
-      <h1><a href="{% url 'post_detail' pk=post.pk %}">{{ post.title }}</a></h1>
-      <div class="date">
-        <p>published: {{ post.published_date }}</p>
-      </div>
-      <p>{{ post.text|linebreaksbr }}</p>
+    <div class="row line">
+      <div class="col-md-1 col-sm-1 col-xs-1">{{ post.pk }}</div>
+      <div class="col-md-4 col-sm-4 col-xs-4"><a href="{% url 'post_detail' pk=post.pk %}">{{ post.title }}</a></div>
+      <div class="date col-md-5 col-sm-5 col-xs-5">{{ post.published_date }}</div>
     </div>
   {% endfor %}
+</div>
+<style>
+.line {
+  border-top: 1px solid grey;
+  padding: 10px;
+}
+
+.line:last-child {
+  border-bottom: 1px solid grey;
+}
+</style>
 {% endblock %}
