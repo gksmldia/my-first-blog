@@ -6,8 +6,17 @@
   {% for post in posts %}
     <div class="row line">
       <div class="col-md-1 col-sm-1 col-xs-1">{{ post.pk }}</div>
-      <div class="col-md-4 col-sm-4 col-xs-4"><a href="{% url 'post_detail' pk=post.pk %}">{{ post.title }}</a></div>
-      <div class="date col-md-5 col-sm-5 col-xs-5">{{ post.published_date }}</div>
+      {% if user.is_authenticated %}
+        <div class="col-md-4 col-sm-4 col-xs-4"><a href="{% url 'post_detail' pk=post.pk %}">{{ post.title }}</a></div>
+      {% else %}
+        <div class="col-md-4 col-sm-4 col-xs-4"><a href="{% url 'login' %}">{{ post.title }}</a></div>
+      {% endif %}
+      <div class="date col-md-4 col-sm-4 col-xs-4">{{ post.published_date }}</div>
+      {% if user.is_authenticated %}
+        <div class="col-md-2 col-sm-2 col-xs-2"><a href="{% url 'post_detail' pk=post.pk %}">Comments: {{ post.approved_comments.count }}</a></div>
+      {% else %}
+        <div class="col-md-2 col-sm-2 col-xs-2"><a href="{% url 'login' %}">Comments: {{ post.approved_comments.count }}</a></div>
+      {% endif %}
     </div>
   {% endfor %}
 </div>

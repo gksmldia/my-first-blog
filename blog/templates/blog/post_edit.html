@@ -1,9 +1,24 @@
 {% extends 'blog/base.html' %}
 
 {% block content %}
-    <h1>New post</h1>
-    <form method="POST" class="post-form">{% csrf_token %}
-        {{ form.as_p }}
-        <button type="submit" class="save btn btn-default">Save</button>
+  <h1>New post</h1>
+    <form method="POST" class="form-horizontal post-form">{% csrf_token %}
+      <div class="form-group">
+        <label for="title" class="col-sm-1 control-label">{{ form.title.label_tag }}</label>
+        <div class="col-sm-9">
+          <input name="{{ form.title.html_name }}" id="title" type="text" class="form-control" value="{{ form.title.value }}" />
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="text" class="col-sm-1 control-label">{{ form.text.label_tag }}</label>
+        <div class="col-sm-9">
+          <textarea name="{{ form.text.html_name }}" id="text" class="form-control" rows="10">{{ form.text.value }}</textarea>
+        </div>
+      </div>
+      <div class="form-group">
+        <div class="col-sm-offset-9">
+          <button type="submit" class="btn btn-default">Save</button>
+        </div>
+      </div>
     </form>
 {% endblock %}
