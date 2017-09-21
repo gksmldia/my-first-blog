@@ -11,12 +11,12 @@
     {% if user.is_authenticated or comment.approved_comment %}
       <div class="btn-group col-md-offset-5" role="group">
         <button type="button" class="btn btn-default" onclick="location.href='{% url 'post_edit' pk=post.pk %}'" >
-          <span class="glyphicon glyphicon-pencil"></span>&nbsp;Modified
+          <span class="glyphicon glyphicon-pencil"></span>&nbsp;Edit
         </button>
         <button type="button" class="btn btn-default" onclick="location.href='{% url 'post_remove' pk=post.pk %}'" >
           <span class="glyphicon glyphicon-remove"></span>&nbsp;Delete</button>
         <button type="button"  class="btn btn-default" onclick="location.href='{% url 'add_comment_to_post' pk=post.pk %}'" >
-          <span class="glyphicon glyphicon-plus"></span>&nbsp;Add comment</button>
+          <span class="glyphicon glyphicon-plus"></span>&nbsp;Add memo</button>
       </div>
     {% endif %}
   </div>
